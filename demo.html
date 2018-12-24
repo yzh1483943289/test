@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        .nav{
+            width: 100%;
+            height:40px;
+            overflow: auto;
+            white-space: nowrap;
+        }
+        .nav .ul{
+            display: flex;
+            width: auto;
+            height: 100%;
+            list-style: none;
+            white-space: nowrap;
+            overflow: auto;
+            justify-content:space-around;
+            padding-left: 30px;
+        }
+        .nav .ul li{
+            padding-right: 30px;
+            height: 40px;
+            white-space: nowrap;
+        }
+    </style>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+</head>
+<body>
+    <div id="box" @click="add">
+        {{ num }}
+
+    </div>
+    <div class="nav">
+        <ul class="ul">
+            <li>首页</li>
+            <li>新闻</li>
+            <li>电影</li>
+            <li>电视剧</li>
+            <li>动漫</li>
+            <li>综艺</li>
+            <li>娱乐</li>
+            <li>直播</li>
+        </ul>
+    </div>
+    
+</body>
+<form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputFile">File input</label>
+          <input type="file" id="exampleInputFile">
+          <p class="help-block">Example block-level help text here.</p>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Check me out
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+<script>
+    var vm = new Vue({
+        el:'#box',
+        data:{
+            num:0,
+            timer:null,
+        },
+        created () {
+            
+        },
+        methods:{
+            
+            add () {
+                clearInterval(this.timer);
+                console.log(this.timer)
+                var that = this;
+                this.timer = setInterval(function () {
+                    that.num++
+                },1000)
+                
+            }
+        }
+    })   
+</script>
+</html>
