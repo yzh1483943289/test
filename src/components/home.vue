@@ -1,17 +1,47 @@
 <template>
-  <el-carousel indicator-position="outside" autoplay="false" type="card"  v-loading="loading2"
-    element-loading-text="拼命加载中"
-    element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)">
-    <el-carousel-item v-for="item in 4" :key="item">
-      <h3>{{ item }}</h3>
-    </el-carousel-item>
-  </el-carousel>
+  <div>
+    <el-carousel indicator-position="outside" :autoplay=flag type="card"> 
+      
+      <el-carousel-item v-for="item in img" :key="item">
+        <img :src=item alt="" width="100%" height="100%">
+      </el-carousel-item>
+    </el-carousel>
+    <div v-for="(item, index) in data" :key="index" :style="{ width:width[index] , height:height[index] ,display:'inline-block'}">
+      {{item.title}}--{{index}}
+      <img :src="item.thumburl" alt="">
+      
+    </div>
+    
+  </div>
+  
 </template>
 
 <script>
 export default {
-    
+    data () {
+      return {
+        img:[],
+        flag:false,
+        data:[],
+        width:[],
+        height:[]
+      }
+    },
+    mounted () {
+      this.axios.get("/apis/open/tupian.json")
+      .then(res =>{
+        console.log(this.width)
+        var that = this
+        console.log(res.data)
+        res.data.map(function(item ,index){
+          that.img.push(item.thumburl)
+          that.data.push(item)
+          that.width.push(item.width+'px')
+          that.height.push((20+item.height*1)+'px')
+        })
+        
+      }).catch(err => (console.log(err)))
+    }
 }
 </script>
 
